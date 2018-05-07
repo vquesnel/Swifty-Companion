@@ -8,6 +8,50 @@
 
 import UIKit
 
+class UserCells:  UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    let cellId = "cellId"
+    var user: [User]?
+    
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = UIColor.rgb(red: 36, green: 36, blue: 36)
+        cv.dataSource = self
+        cv.delegate = self
+        return cv
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        collectionView.register(UserCell.self, forCellWithReuseIdentifier: cellId)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserCell
+        cell.user = user?[0]
+        cell.backgroundColor = .purple
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: frame.width, height: frame.height )
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Init hasn't bee implemented")
+    }
+    
+}
+
 class UserCell: UICollectionViewCell {
     var user : User? {
         willSet {
@@ -247,9 +291,10 @@ class UserCell: UICollectionViewCell {
         
     func setConstraint() {
         
-        topShadowView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 100).isActive = true
+        topShadowView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 60).isActive = true
         topShadowView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        topShadowView.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        topShadowView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        topShadowView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
         topShadowView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         picture.widthAnchor.constraint(equalToConstant: 140).isActive = true
@@ -279,7 +324,8 @@ class UserCell: UICollectionViewCell {
         
         bottomShadowView.topAnchor.constraint(equalTo: topShadowView.bottomAnchor, constant: 40).isActive = true
         bottomShadowView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        bottomShadowView.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        bottomShadowView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        bottomShadowView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
         bottomShadowView.heightAnchor.constraint(equalToConstant: 150).isActive = true
 
         phone.leadingAnchor.constraint(equalTo: phoneImage.trailingAnchor, constant: 20).isActive = true

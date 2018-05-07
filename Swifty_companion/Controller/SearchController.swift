@@ -28,6 +28,9 @@ class SearchController : UIViewController {
         field.layer.cornerRadius = 5
         field.textAlignment = .center
         field.textColor = .white
+        field.keyboardAppearance = .dark
+        field.autocorrectionType = .no
+        field.returnKeyType = .done
         field.backgroundColor = UIColor(white: 0, alpha: 0.3)
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
