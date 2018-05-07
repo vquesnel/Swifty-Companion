@@ -75,7 +75,7 @@ class SearchController : UIViewController {
         searchButton.isEnabled = false;
         guard let login = searchInput.text?.trim() else { return }
         self.profilController.target = login
-        guard let request = APIServices.shared.createRequest(for: "/v2/users/\(login)") else { return }
+        guard let request = APIServices.shared.createRequest(for: "/users/\(login)") else { return }
         RequestService.shared.get(req: request, for: User.self) { [unowned self] data in
             if let data = data {
                 self.profilController.user = data

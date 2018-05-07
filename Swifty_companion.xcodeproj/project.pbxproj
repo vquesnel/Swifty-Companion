@@ -20,10 +20,13 @@
 		57E3AABD20A0768F00F015AE /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3AABC20A0768F00F015AE /* MenuCell.swift */; };
 		57E3AABF20A076C300F015AE /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3AABE20A076C300F015AE /* Menu.swift */; };
 		57E3AAC120A0777400F015AE /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3AAC020A0777400F015AE /* UserCell.swift */; };
-		57E3AAC820A0AD3B00F015AE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3AAC720A0AD3B00F015AE /* User.swift */; };
-		57E3AACA20A0AD4600F015AE /* Cursus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3AAC920A0AD4600F015AE /* Cursus.swift */; };
-		57E3AACC20A0AD5600F015AE /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3AACB20A0AD5600F015AE /* Campus.swift */; };
 		57E3AACE20A0AE3C00F015AE /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3AACD20A0AE3C00F015AE /* RequestService.swift */; };
+		57E3AAD120A0B03100F015AE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3AAD020A0B03100F015AE /* User.swift */; };
+		57E3AAD320A0B04D00F015AE /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3AAD220A0B04D00F015AE /* Campus.swift */; };
+		57E3AAD520A0B07300F015AE /* Cursus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3AAD420A0B07300F015AE /* Cursus.swift */; };
+		57E3AAD720A0B37A00F015AE /* Coalition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3AAD620A0B37A00F015AE /* Coalition.swift */; };
+		57E3AAD920A0B96500F015AE /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3AAD820A0B96500F015AE /* Project.swift */; };
+		57E3AADB20A0BA1000F015AE /* Skills.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3AADA20A0BA1000F015AE /* Skills.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,10 +45,13 @@
 		57E3AABC20A0768F00F015AE /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuCell.swift; path = Swifty_companion/Views/MenuCell.swift; sourceTree = SOURCE_ROOT; };
 		57E3AABE20A076C300F015AE /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Menu.swift; path = Swifty_companion/Views/Menu.swift; sourceTree = SOURCE_ROOT; };
 		57E3AAC020A0777400F015AE /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserCell.swift; path = Swifty_companion/Views/UserCell.swift; sourceTree = SOURCE_ROOT; };
-		57E3AAC720A0AD3B00F015AE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../../../../../../User.swift; sourceTree = "<group>"; };
-		57E3AAC920A0AD4600F015AE /* Cursus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Cursus.swift; path = ../../../../../../Cursus.swift; sourceTree = "<group>"; };
-		57E3AACB20A0AD5600F015AE /* Campus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Campus.swift; path = ../../../../../../Campus.swift; sourceTree = "<group>"; };
 		57E3AACD20A0AE3C00F015AE /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
+		57E3AAD020A0B03100F015AE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		57E3AAD220A0B04D00F015AE /* Campus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campus.swift; sourceTree = "<group>"; };
+		57E3AAD420A0B07300F015AE /* Cursus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cursus.swift; sourceTree = "<group>"; };
+		57E3AAD620A0B37A00F015AE /* Coalition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coalition.swift; sourceTree = "<group>"; };
+		57E3AAD820A0B96500F015AE /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		57E3AADA20A0BA1000F015AE /* Skills.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skills.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +84,8 @@
 		57211681209C4DE3006ED93B /* Swifty_companion */ = {
 			isa = PBXGroup;
 			children = (
+				57E3AACF20A0B02700F015AE /* Models */,
 				57E3AAC220A07BA900F015AE /* Views */,
-				57D427BE209C9CD40059115B /* Models */,
 				5721169C209C566F006ED93B /* APIServices */,
 				57211697209C51B9006ED93B /* Utils */,
 				57211694209C4E14006ED93B /* Controller */,
@@ -120,17 +126,6 @@
 			path = APIServices;
 			sourceTree = "<group>";
 		};
-		57D427BE209C9CD40059115B /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				57E3AAC720A0AD3B00F015AE /* User.swift */,
-				57E3AAC920A0AD4600F015AE /* Cursus.swift */,
-				57E3AACB20A0AD5600F015AE /* Campus.swift */,
-			);
-			name = Models;
-			path = "../../swifty_kiefer/Swifty-Companion/Models";
-			sourceTree = "<group>";
-		};
 		57E3AAC220A07BA900F015AE /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +134,19 @@
 				57E3AABC20A0768F00F015AE /* MenuCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		57E3AACF20A0B02700F015AE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				57E3AAD020A0B03100F015AE /* User.swift */,
+				57E3AAD220A0B04D00F015AE /* Campus.swift */,
+				57E3AAD420A0B07300F015AE /* Cursus.swift */,
+				57E3AAD620A0B37A00F015AE /* Coalition.swift */,
+				57E3AAD820A0B96500F015AE /* Project.swift */,
+				57E3AADA20A0BA1000F015AE /* Skills.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,20 +220,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57E3AAD720A0B37A00F015AE /* Coalition.swift in Sources */,
 				5721169B209C53AF006ED93B /* ProfilController.swift in Sources */,
 				57E3AABD20A0768F00F015AE /* MenuCell.swift in Sources */,
-				57E3AACC20A0AD5600F015AE /* Campus.swift in Sources */,
+				57E3AADB20A0BA1000F015AE /* Skills.swift in Sources */,
+				57E3AAD320A0B04D00F015AE /* Campus.swift in Sources */,
 				5721169E209C5683006ED93B /* APIRequest.swift in Sources */,
 				57211685209C4DE3006ED93B /* ViewController.swift in Sources */,
 				57211696209C4E2E006ED93B /* SearchController.swift in Sources */,
+				57E3AAD520A0B07300F015AE /* Cursus.swift in Sources */,
 				57E3AAC120A0777400F015AE /* UserCell.swift in Sources */,
 				57E3AACE20A0AE3C00F015AE /* RequestService.swift in Sources */,
-				57E3AAC820A0AD3B00F015AE /* User.swift in Sources */,
 				57211699209C51DA006ED93B /* Extensions.swift in Sources */,
+				57E3AAD120A0B03100F015AE /* User.swift in Sources */,
 				57D427C6209C9ED50059115B /* BackgroundView.swift in Sources */,
 				57E3AABF20A076C300F015AE /* Menu.swift in Sources */,
 				57211683209C4DE3006ED93B /* AppDelegate.swift in Sources */,
-				57E3AACA20A0AD4600F015AE /* Cursus.swift in Sources */,
+				57E3AAD920A0B96500F015AE /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

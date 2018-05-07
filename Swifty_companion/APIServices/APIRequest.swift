@@ -23,7 +23,7 @@ struct Token : Decodable {
 
 final class APIServices {
     
-    let host = "https://api.intra.42.fr"
+    let host = "https://api.intra.42.fr/v2"
     let uid = "c1587bd0c060932c36861cbe32ed99d817f76ebcb66803b1c584af8558e97d1e"
     let secret = "be8b7273d48e16de2ffe6931e75aacb94bd7f8e70e9d698f3457bfa51b0f14a7"
     var token : Token?

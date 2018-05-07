@@ -31,6 +31,19 @@ class UserCell: UICollectionViewCell {
                 self.level.text = "level - \(level) %"
                 self.progressBar.progress = Float(level.truncatingRemainder(dividingBy: 1.0))
             }
+            guard let id = self.user?.id else { return }
+            guard let request = APIServices.shared.createRequest(for: "/users/\(id)/coalitions") else { return }
+            RequestService.shared.get(req: request, for: [Coalition].self) { [unowned self] data in
+                if let data = data {
+                    if data.count > 0 {
+                        let view = UIImageView()
+                        view.image = UIImage(named: data[0].slug)
+                        view.clipsToBounds = true
+                        view.contentMode = .scaleAspectFill
+                        self.backgroundView = view
+                    }
+                }
+            }
         }
     }
     
@@ -94,6 +107,7 @@ class UserCell: UICollectionViewCell {
         let pb = UIProgressView()
         pb.progressTintColor = UIColor.rgb(red: 29, green: 186, blue: 187)
         pb.progress = 0.45
+        pb.layer.cornerRadius = 5
         pb.translatesAutoresizingMaskIntoConstraints = false
         return pb
     }()
@@ -241,7 +255,7 @@ class UserCell: UICollectionViewCell {
         picture.widthAnchor.constraint(equalToConstant: 140).isActive = true
         picture.heightAnchor.constraint(equalToConstant: 140).isActive = true
         picture.leadingAnchor.constraint(equalTo: topShadowView.leadingAnchor, constant: 10).isActive = true
-        picture.centerYAnchor.constraint(equalTo: topShadowView.centerYAnchor, constant: -10).isActive = true
+        picture.centerYAnchor.constraint(equalTo: topShadowView.centerYAnchor, constant: -20).isActive = true
         
         name.leadingAnchor.constraint(equalTo: picture.trailingAnchor, constant: 5).isActive = true
         name.topAnchor.constraint(equalTo: topShadowView.topAnchor, constant: 40).isActive = true
@@ -255,7 +269,7 @@ class UserCell: UICollectionViewCell {
         location.topAnchor.constraint(equalTo: login.bottomAnchor, constant: 10).isActive = true
         location.trailingAnchor.constraint(equalTo: topShadowView.trailingAnchor, constant: -10).isActive = true
         
-        progressBar.topAnchor.constraint(equalTo: picture.bottomAnchor, constant: 5).isActive = true
+        progressBar.topAnchor.constraint(equalTo: picture.bottomAnchor, constant: 10).isActive = true
         progressBar.leadingAnchor.constraint(equalTo: topShadowView.leadingAnchor, constant: 10).isActive = true
         progressBar.trailingAnchor.constraint(equalTo: topShadowView.trailingAnchor, constant: -10).isActive = true
         progressBar.heightAnchor.constraint(equalToConstant: 20).isActive = true
