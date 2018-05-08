@@ -64,7 +64,10 @@ class SearchController : UIViewController {
 
         view.backgroundColor = .black
         
-        let bg = Utils.shared.addBackground(image: "default")
+        let bg = UIImageView(frame: UIScreen.main.bounds)
+        bg.image = UIImage(named: "default")
+        bg.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
         view.addSubview(bg)
         view.addSubview(searchInput)
         view.addSubview(searchButton)
@@ -83,6 +86,8 @@ class SearchController : UIViewController {
             if let data = data {
                 self.profilController.user = data
                 self.navigationController?.pushViewController(self.profilController, animated: true)
+                self.profilController.scrollToMenuIndex(index: 0)
+                self.profilController.menuBar.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: [])
                 self.searchButton.isEnabled = true;
                 self.profilController.collectionView?.reloadData()
                 self.searchInput.text = ""
@@ -101,7 +106,7 @@ class SearchController : UIViewController {
         schoolImage.heightAnchor.constraint(equalToConstant: 100).isActive = true
         schoolImage.widthAnchor.constraint(equalToConstant: 100).isActive = true
         schoolImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        schoolImage.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -135).isActive = true
+        schoolImage.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -115).isActive = true
         
         searchInput.heightAnchor.constraint(equalToConstant: 50).isActive = true
         searchInput.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -33).isActive = true
@@ -112,6 +117,14 @@ class SearchController : UIViewController {
         searchButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -33).isActive = true
         searchButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 33).isActive = true
         searchButton.topAnchor.constraint(equalTo: searchInput.safeAreaLayoutGuide.bottomAnchor, constant: 35).isActive = true
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        coordinator.animate(alongsideTransition: { [unowned self] _ in
+            self.viewLayoutMarginsDidChange()
+            }, completion: { _ in
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {

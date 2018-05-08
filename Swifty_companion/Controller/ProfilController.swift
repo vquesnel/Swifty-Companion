@@ -12,6 +12,8 @@ import UIKit
 class ProfilController : UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let userCellId = "userCellId"
+    let projectCellId = "projectCellId"
+    let skillCellId = "skillCellId"
     let titles : [String] = ["Profil", "Projects", "Skills"]
     
     var target : String?
@@ -55,13 +57,15 @@ class ProfilController : UICollectionViewController, UICollectionViewDelegateFlo
         ]
         navigationItem.titleView = navigationTitle
         
-        collectionView?.register(UserCell.self, forCellWithReuseIdentifier: userCellId)
+        collectionView?.register(UserView.self, forCellWithReuseIdentifier: userCellId)
+        collectionView?.register(ProjectsView.self, forCellWithReuseIdentifier: projectCellId)
+        collectionView?.register(SkillsView.self, forCellWithReuseIdentifier: skillCellId)
         collectionView?.contentInset = UIEdgeInsets(top: 80, left: 0, bottom: 0, right: 0)
         collectionView?.showsHorizontalScrollIndicator = false
         collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 80, left: 0, bottom: 0, right: 0)
         collectionView?.isPagingEnabled = true
-        view.addSubview(menuBar)
         
+        view.addSubview(menuBar)
         menuBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         menuBar.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         menuBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -90,9 +94,9 @@ class ProfilController : UICollectionViewController, UICollectionViewDelegateFlo
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
+
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
         let index = targetContentOffset.move().x / view.frame.width
         let indexPath = IndexPath(item: Int(index), section: 0)
         
@@ -101,19 +105,44 @@ class ProfilController : UICollectionViewController, UICollectionViewDelegateFlo
         setTitleForMenuIndex(index: Int(index))
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: userCellId, for: indexPath) as! UserCell
-        cell.user = self.user
-        let view = UIImageView()
-        view.image = UIImage(named: "default")
-        view.clipsToBounds = true
-        view.contentMode = .scaleAspectFill
-        cell.backgroundView = view
-        return cell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {        
+        switch indexPath.item {
+        case 0:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: userCellId, for: indexPath) as! UserView
+            let view = UIImageView()
+            view.image = UIImage(named: "default")
+            view.clipsToBounds = true
+            view.contentMode = .scaleAspectFill
+            cell.backgroundView = view
+            cell.user = user
+            return cell
+        case 1 :
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: projectCellId, for: indexPath) as! ProjectsView
+            cell.projects = user?.projects
+            return cell
+        default :
+             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: skillCellId, for: indexPath) as! SkillsView
+             cell.skills = user?.cursus[0].skills
+             return cell
+        }
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: view.frame.height)
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        let x = self.scrollX / self.view.frame.width
+        coordinator.animate(alongsideTransition: { [unowned self] _ in
+            self.collectionView?.collectionViewLayout.invalidateLayout()
+            self.menuBar.collectionView.collectionViewLayout.invalidateLayout()
+            self.menuBar.horizontalBarLeftAnchor?.constant = self.view.frame.width * x
+            self.menuBar.collectionView.collectionViewLayout.invalidateLayout()
+            }, completion: { _ in
+                self.scrollX = x * self.view.frame.width
+        })
     }
 }
 

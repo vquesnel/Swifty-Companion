@@ -64,12 +64,9 @@ class Menu: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIColl
         horizontalBarLeftAnchor?.isActive = true
         horizontalBar.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         horizontalBar.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/3).isActive = true
-        horizontalBar.heightAnchor.constraint(equalToConstant: 6).isActive = true
+        horizontalBar.heightAnchor.constraint(equalToConstant: 4).isActive = true
         
     }
-}
-
-extension Menu {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
@@ -94,10 +91,6 @@ extension Menu {
         profilController?.scrollToMenuIndex(index: indexPath.item)
     }
     
-    
-}
-
-extension Menu {
     func setConstraint() {
         
         collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true

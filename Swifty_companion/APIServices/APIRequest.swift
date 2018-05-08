@@ -12,7 +12,7 @@ import Foundation
 struct Token : Decodable {
     var key : String?
     var type : String?
-    var expires: Int?
+    var expires : Int?
     
     private enum CodingKeys : String, CodingKey {
         case key = "access_token"
@@ -32,8 +32,8 @@ final class APIServices {
     
     func createRequest(for route: String) -> URLRequest? {
         guard let url = URL(string: "\(host)\(route)") else { return nil }
-        guard let token = token?.key else { return nil }
         check_token()
+        guard let token = token?.key else { return nil }
         print("token ---> \(token)")
         var request = URLRequest(url: url)
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -55,20 +55,18 @@ final class APIServices {
     }
     
     func check_token() {
-        guard let url = URL(string: "\(host)/oauth/token/info") else { return  }
+        guard let url = URL(string: "\(host)/oauth/token/info") else { return }
         var request = URLRequest(url: url)
         guard let token = token?.key else { return  }
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
         
         RequestService.shared.get(req: request, for: Token.self) { data in
-            if let data = data {
-                self.token?.expires = data.expires
-            }
-            else {
-                print("Error token expires")
-                self.token = nil
-                self.getToken(){_ in}
+            if var data = data {
+                data.expires = 0
+                if (data.expires == 0) {
+                    self.getToken(){ _ in }
+                }
             }
         }
     }

@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        APIServices.shared.getToken { _ in
+        APIServices.shared.getToken() { _ in
             self.window = UIWindow()
             self.window?.makeKeyAndVisible()
             self.window?.rootViewController = UINavigationController(rootViewController: SearchController())

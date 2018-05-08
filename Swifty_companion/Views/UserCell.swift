@@ -8,51 +8,7 @@
 
 import UIKit
 
-class UserCells:  UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
-    let cellId = "cellId"
-    var user: [User]?
-    
-    lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = UIColor.rgb(red: 36, green: 36, blue: 36)
-        cv.dataSource = self
-        cv.delegate = self
-        return cv
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        collectionView.register(UserCell.self, forCellWithReuseIdentifier: cellId)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserCell
-        cell.user = user?[0]
-        cell.backgroundColor = .purple
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.width, height: frame.height )
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("Init hasn't bee implemented")
-    }
-    
-}
-
-class UserCell: UICollectionViewCell {
+class UserCell: UITableViewCell {
     var user : User? {
         willSet {
             picture.image = UIImage()
@@ -255,9 +211,8 @@ class UserCell: UICollectionViewCell {
         return label
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(topShadowView)
         topShadowView.addSubview(picture)
         topShadowView.addSubview(login)
@@ -364,7 +319,7 @@ class UserCell: UICollectionViewCell {
         correctionPoint.trailingAnchor.constraint(equalTo: correctionImage.leadingAnchor, constant: -20).isActive = true
 
         correctionImage.trailingAnchor.constraint(equalTo: bottomShadowView.trailingAnchor, constant: -20).isActive = true
-        correctionImage.topAnchor.constraint(equalTo: walletImage.bottomAnchor, constant: 20).isActive = true
+        correctionImage.centerYAnchor.constraint(equalTo: locationImage.centerYAnchor).isActive = true
         correctionImage.widthAnchor.constraint(equalToConstant: 16).isActive = true
         correctionImage.heightAnchor.constraint(equalToConstant: 16).isActive = true
         
