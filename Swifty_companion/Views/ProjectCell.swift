@@ -14,7 +14,7 @@ class ProjectCell : UITableViewCell {
     let name : UILabel = {
         let label = UILabel()
         label.text = nil
-        label.textColor = .white
+        label.textColor = UIColor.rgb(red: 236, green: 236, blue: 236)
         label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -23,7 +23,7 @@ class ProjectCell : UITableViewCell {
     let grade : UILabel = {
         let label = UILabel()
         label.text = nil
-        label.textColor = .white
+        label.textColor = UIColor.rgb(red: 236, green: 236, blue: 236)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

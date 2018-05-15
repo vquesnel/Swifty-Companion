@@ -13,7 +13,7 @@ class SkillCell : UITableViewCell {
     let name : UILabel = {
         let label = UILabel()
         label.text = nil
-        label.textColor = .white
+        label.textColor = UIColor.rgb(red: 236, green: 236, blue: 236)
         label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -22,7 +22,7 @@ class SkillCell : UITableViewCell {
     let grade : UILabel = {
         let label = UILabel()
         label.text = nil
-        label.textColor = .white
+        label.textColor = UIColor.rgb(red: 236, green: 236, blue: 236)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -30,7 +30,8 @@ class SkillCell : UITableViewCell {
     let progressBar: UIProgressView = {
         let pb = UIProgressView()
         pb.progressTintColor = UIColor.rgb(red: 29, green: 186, blue: 187)
-        pb.layer.cornerRadius = 5
+        pb.trackTintColor = UIColor.rgb(red: 236, green: 236, blue: 236, alpha: 0.7)
+        pb.layer.cornerRadius = 7
         pb.translatesAutoresizingMaskIntoConstraints = false
         return pb
     }()

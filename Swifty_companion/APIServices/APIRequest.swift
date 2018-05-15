@@ -65,6 +65,7 @@ final class APIServices {
             if let data = data {
                 print("token expires in --> \(String(describing: data.expires)) seconds")
                 if (data.expires == nil) {
+                    print("Generate New Token")
                     self.getToken() { _ in }
                 }
             }

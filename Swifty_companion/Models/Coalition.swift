@@ -10,9 +10,10 @@ import Foundation
 
 struct Coalition : Decodable {
     let slug : String
+    let color: String
     
     private enum CodingKeys: String, CodingKey {
-        case  slug
+        case  slug, color
     }
 }
 

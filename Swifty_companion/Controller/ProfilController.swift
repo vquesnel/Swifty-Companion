@@ -50,16 +50,17 @@ class ProfilController : UICollectionViewController, UICollectionViewDelegateFlo
             flowLayout.minimumLineSpacing = 0
         }
         let navigationTitle = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
-        navigationTitle.textColor = .white
-        navigationTitle.text = "Profil"
+        navigationTitle.textColor = UIColor.rgb(red: 236, green: 236, blue: 236)
+        navigationTitle.text = titles[0]
+        navigationTitle.textAlignment = .center
         navigationTitle.font = UIFont.systemFont(ofSize: 20.0)
         
         navigationController?.navigationBar.barTintColor =  UIColor.rgb(red: 29, green: 186, blue: 187)
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.tintColor = UIColor.rgb(red: 236, green: 236, blue: 236)
         navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue) : UIColor.white
+            NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.white
         ]
         navigationItem.titleView = navigationTitle
         

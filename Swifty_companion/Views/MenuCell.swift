@@ -28,7 +28,7 @@ class MenuCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            if self.isSelected { logo.tintColor = .white }
+            if self.isSelected { logo.tintColor = UIColor.rgb(red: 236, green: 236, blue: 236) }
             else { logo.tintColor = UIColor(white: 0, alpha: 0.4) }
         }
     }

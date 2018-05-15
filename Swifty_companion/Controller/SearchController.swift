@@ -23,14 +23,14 @@ class SearchController : UIViewController, UITextFieldDelegate {
         let field = UITextField()
         field.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.15).cgColor
         field.layer.borderWidth = 1
-        field.attributedPlaceholder = NSAttributedString(string: "Search for a login", attributes: [NSAttributedStringKey.foregroundColor : UIColor(white: 1, alpha: 0.8)])
+        field.attributedPlaceholder = NSAttributedString(string: "Search for a login", attributes: [NSAttributedStringKey.foregroundColor : UIColor.rgb(red: 236, green: 236, blue: 236, alpha: 0.7)])
         field.autocapitalizationType = .none
         field.layer.cornerRadius = 5
         field.textAlignment = .center
-        field.textColor = .white
+        field.textColor = UIColor.rgb(red: 236, green: 236, blue: 236)
         field.keyboardAppearance = .dark
         field.autocorrectionType = .no
-        field.returnKeyType = .done
+        field.returnKeyType = .search
         field.backgroundColor = UIColor(white: 0, alpha: 0.3)
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
