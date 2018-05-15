@@ -11,7 +11,28 @@ import UIKit
 class UserView: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate {
     
     var user : User? {
+        willSet {
+            let view = UIImageView()
+            view.image = UIImage(named: "default")
+            view.clipsToBounds = true
+            view.contentMode = .scaleAspectFill
+            self.tableView.backgroundView = view
+        }
         didSet {
+            guard let id = self.user?.id else { return }
+            guard let request = APIServices.shared.createRequest(for: "/users/\(id)/coalitions") else { return }
+            RequestService.shared.get(req: request, for: [Coalition].self) { [unowned self] data in
+                if let data = data {
+                    print("sdfsdfsdfsfsfsdf")
+                    if data.count > 0 {
+                        let view = UIImageView()
+                        view.image = UIImage(named: data[0].slug)
+                        view.clipsToBounds = true
+                        view.contentMode = .scaleAspectFill
+                        self.tableView.backgroundView = view
+                    }
+                }
+            }
             tableView.reloadData()
         }
     }
@@ -25,7 +46,6 @@ class UserView: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate
         view.delegate = self
         view.dataSource = self
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .none
         return view
     }()
     
@@ -40,7 +60,6 @@ class UserView: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate
         tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
-        tableView.isScrollEnabled = tableView.contentSize.height < tableView.frame.size.height ? false : true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -52,7 +71,7 @@ class UserView: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(460)
+        return CGFloat(500)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

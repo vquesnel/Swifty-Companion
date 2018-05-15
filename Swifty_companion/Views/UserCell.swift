@@ -11,18 +11,12 @@ import UIKit
 class UserCell: UITableViewCell {
     var user : User? {
         willSet {
-            let view = UIImageView()
-            view.image = UIImage(named: "default")
-            view.clipsToBounds = true
-            view.contentMode = .scaleAspectFill
-            self.backgroundView = view
             picture.image = UIImage()
             name.text = "N/A"
             campusLocation.text = "N/A"
             wallet.text = "N/A"
             correctionPoint.text = "N/A"
         }
-        
         didSet {
             downloadImage()
             name.text = self.user?.displayName
@@ -36,19 +30,6 @@ class UserCell: UITableViewCell {
             if let level = self.user?.cursus[0].level {
                 self.level.text = "level - \(level) %"
                 self.progressBar.progress = Float(level.truncatingRemainder(dividingBy: 1.0))
-            }
-            guard let id = self.user?.id else { return }
-            guard let request = APIServices.shared.createRequest(for: "/users/\(id)/coalitions") else { return }
-            RequestService.shared.get(req: request, for: [Coalition].self) { [unowned self] data in
-                if let data = data {
-                    if data.count > 0 {
-                        let view = UIImageView()
-                        view.image = UIImage(named: data[0].slug)
-                        view.clipsToBounds = true
-                        view.contentMode = .scaleAspectFill
-                        self.backgroundView = view
-                    }
-                }
             }
         }
     }
@@ -220,6 +201,8 @@ class UserCell: UITableViewCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        backgroundColor = .clear
         addSubview(topShadowView)
         topShadowView.addSubview(picture)
         topShadowView.addSubview(login)

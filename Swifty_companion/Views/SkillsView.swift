@@ -35,7 +35,7 @@ class SkillsView: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
         tableView.register(SkillCell.self, forCellReuseIdentifier: cellId)
         tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
         tableView.backgroundColor = UIColor.rgb(red: 30, green: 30, blue: 30)
     }
