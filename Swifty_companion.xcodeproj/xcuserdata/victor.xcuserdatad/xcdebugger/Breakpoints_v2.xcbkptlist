@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swifty_companion/APIServices/APIRequest.swift"
-            timestampString = "548076365.679377"
+            timestampString = "548078611.500084"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
@@ -26,12 +26,12 @@
                   moduleName = "Swifty_companion"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/victor/Documents/42/Rendu/swift/Swifty_Companion/Swifty_companion/APIServices/APIRequest.swift"
-                  timestampString = "548076366.0058759"
+                  timestampString = "548078611.820884"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "68"
                   endingLineNumber = "68"
-                  offsetFromSymbolStart = "664">
+                  offsetFromSymbolStart = "847">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -41,7 +41,7 @@
                   moduleName = "Swifty_companion"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/victor/Documents/42/Rendu/swift/Swifty_Companion/Swifty_companion/APIServices/APIRequest.swift"
-                  timestampString = "548076366.00885"
+                  timestampString = "548078611.823547"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "68"

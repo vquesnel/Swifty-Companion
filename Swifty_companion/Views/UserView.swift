@@ -23,7 +23,6 @@ class UserView: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate
             guard let request = APIServices.shared.createRequest(for: "/users/\(id)/coalitions") else { return }
             RequestService.shared.get(req: request, for: [Coalition].self) { [unowned self] data in
                 if let data = data {
-                    print("sdfsdfsdfsfsfsdf")
                     if data.count > 0 {
                         let view = UIImageView()
                         view.image = UIImage(named: data[0].slug)
