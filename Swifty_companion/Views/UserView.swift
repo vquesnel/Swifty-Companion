@@ -29,16 +29,10 @@ class UserView: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate
         return view
     }()
     
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.tableView.scrollRectToVisible(CGRect(x: 0, y: 0,  width: 1, height: 1), animated: false)
-        let view = UIImageView()
-        let image = UIImage(named: "default")
-        view.image = image
-        view.contentMode = .scaleAspectFill
-        backgroundView = view
+
         addSubview(tableView)
     
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
@@ -46,7 +40,7 @@ class UserView: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate
         tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
-        
+        tableView.isScrollEnabled = tableView.contentSize.height < tableView.frame.size.height ? false : true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,7 +52,7 @@ class UserView: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(500)
+        return CGFloat(460)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

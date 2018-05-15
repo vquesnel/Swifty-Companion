@@ -15,6 +15,7 @@ class ProjectCell : UITableViewCell {
         let label = UILabel()
         label.text = nil
         label.textColor = .white
+        label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -38,25 +39,23 @@ class ProjectCell : UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         backgroundColor = .none
         
         addSubview(name)
         addSubview(grade)
         addSubview(gradeLogo)
         
-        name.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-        name.trailingAnchor.constraint(equalTo: gradeLogo.leadingAnchor, constant: -20).isActive = true
+        name.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
         name.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        name.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, constant: -100).isActive = true
         
-        gradeLogo.trailingAnchor.constraint(equalTo: grade.leadingAnchor, constant: -10).isActive = true
+        gradeLogo.rightAnchor.constraint(equalTo: grade.leftAnchor, constant: -10).isActive = true
         gradeLogo.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         gradeLogo.heightAnchor.constraint(equalToConstant: 15).isActive = true
         gradeLogo.widthAnchor.constraint(equalToConstant: 15).isActive = true
         
-        grade.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
-        grade.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
+        grade.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
+        grade.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true        
     }
     
     required init?(coder aDecoder: NSCoder) {

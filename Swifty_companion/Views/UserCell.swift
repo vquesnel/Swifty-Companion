@@ -11,12 +11,18 @@ import UIKit
 class UserCell: UITableViewCell {
     var user : User? {
         willSet {
+            let view = UIImageView()
+            view.image = UIImage(named: "default")
+            view.clipsToBounds = true
+            view.contentMode = .scaleAspectFill
+            self.backgroundView = view
             picture.image = UIImage()
             name.text = "N/A"
             campusLocation.text = "N/A"
             wallet.text = "N/A"
             correctionPoint.text = "N/A"
         }
+        
         didSet {
             downloadImage()
             name.text = self.user?.displayName
@@ -79,6 +85,7 @@ class UserCell: UITableViewCell {
         let label = UILabel()
         label.text = "Display Name"
         label.textColor = .white
+        label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -133,7 +140,7 @@ class UserCell: UITableViewCell {
     
     let phone : UILabel = {
         let label = UILabel()
-        label.text = "0606060606"
+        label.text = "N/A"
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -151,7 +158,7 @@ class UserCell: UITableViewCell {
     
     let email : UILabel = {
         let label = UILabel()
-        label.text = "test@email.fr"
+        label.text = "N/A"
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -169,7 +176,7 @@ class UserCell: UITableViewCell {
     
     let campusLocation : UILabel = {
         let label = UILabel()
-        label.text = "Paris"
+        label.text = "N/A"
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -187,7 +194,7 @@ class UserCell: UITableViewCell {
     
     let wallet : UILabel = {
         let label = UILabel()
-        label.text = "220"
+        label.text = "N/A"
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -205,7 +212,7 @@ class UserCell: UITableViewCell {
     
     let correctionPoint : UILabel = {
         let label = UILabel()
-        label.text = "12"
+        label.text = "N/A"
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -246,7 +253,7 @@ class UserCell: UITableViewCell {
         
     func setConstraint() {
         
-        topShadowView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 60).isActive = true
+        topShadowView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
         topShadowView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         topShadowView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
         topShadowView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
@@ -322,7 +329,6 @@ class UserCell: UITableViewCell {
         correctionImage.centerYAnchor.constraint(equalTo: locationImage.centerYAnchor).isActive = true
         correctionImage.widthAnchor.constraint(equalToConstant: 16).isActive = true
         correctionImage.heightAnchor.constraint(equalToConstant: 16).isActive = true
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

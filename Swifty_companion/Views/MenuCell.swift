@@ -37,14 +37,9 @@ class MenuCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-}
-
-extension MenuCell {
-    
     func setConstraints() {
         logo.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         logo.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
         logo.widthAnchor.constraint(equalToConstant: 28).isActive = true
         logo.heightAnchor.constraint(equalToConstant: 28).isActive = true
     }

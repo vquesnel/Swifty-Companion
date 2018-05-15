@@ -62,11 +62,14 @@ final class APIServices {
         request.httpMethod = "GET"
         
         RequestService.shared.get(req: request, for: Token.self) { data in
-            if var data = data {
-                data.expires = 0
-                if (data.expires == 0) {
-                    self.getToken(){ _ in }
+            if let data = data {
+                print("token expires in --> \(String(describing: data.expires)) seconds")
+                if (data.expires == nil) {
+                    self.getToken() { _ in }
                 }
+            }
+            else {
+                self.getToken() { _ in }
             }
         }
     }

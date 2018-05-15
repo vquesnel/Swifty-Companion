@@ -14,6 +14,7 @@ class SkillCell : UITableViewCell {
         let label = UILabel()
         label.text = nil
         label.textColor = .white
+        label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -49,15 +50,15 @@ class SkillCell : UITableViewCell {
     }
  
     func setConstraints() {
-        name.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        name.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -15).isActive = true
-        name.trailingAnchor.constraint(equalTo: grade.leadingAnchor, constant: -20).isActive = true
+        grade.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
+        grade.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -15).isActive = true
         
-        grade.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
-        grade.centerYAnchor.constraint(equalTo: name.centerYAnchor).isActive = true
+        name.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
+        name.centerYAnchor.constraint(equalTo: grade.centerYAnchor).isActive = true
+        name.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, constant: -100).isActive = true
         
-        progressBar.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        progressBar.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
+        progressBar.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
+        progressBar.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
         progressBar.heightAnchor.constraint(equalToConstant: 4).isActive = true
         progressBar.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor, constant: 15).isActive = true
     }

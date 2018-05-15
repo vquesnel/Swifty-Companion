@@ -9,7 +9,7 @@
 
 import UIKit
 
-class SearchController : UIViewController {
+class SearchController : UIViewController, UITextFieldDelegate {
     
     let cellId = "cellId"
     
@@ -44,9 +44,7 @@ class SearchController : UIViewController {
         imageView.image = UIImage(named: "42_logo")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
-        
     }()
-    
     
     let searchButton : UIButton = {
         let button = UIButton()
@@ -57,7 +55,6 @@ class SearchController : UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,9 +69,9 @@ class SearchController : UIViewController {
         view.addSubview(searchInput)
         view.addSubview(searchButton)
         view.addSubview(schoolImage)
-    
-        setConstraints()
         
+        initializeTextFields()
+        setConstraints()
     }
     
     @objc func handleSearch() {
@@ -106,7 +103,7 @@ class SearchController : UIViewController {
         schoolImage.heightAnchor.constraint(equalToConstant: 100).isActive = true
         schoolImage.widthAnchor.constraint(equalToConstant: 100).isActive = true
         schoolImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        schoolImage.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -115).isActive = true
+        schoolImage.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -155).isActive = true
         
         searchInput.heightAnchor.constraint(equalToConstant: 50).isActive = true
         searchInput.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -33).isActive = true
@@ -119,12 +116,23 @@ class SearchController : UIViewController {
         searchButton.topAnchor.constraint(equalTo: searchInput.safeAreaLayoutGuide.bottomAnchor, constant: 35).isActive = true
     }
     
+    func initializeTextFields() {
+        searchInput.delegate = self
+        searchInput.keyboardType = UIKeyboardType.asciiCapable
+    }
+    
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         super.willTransition(to: newCollection, with: coordinator)
         coordinator.animate(alongsideTransition: { [unowned self] _ in
             self.viewLayoutMarginsDidChange()
             }, completion: { _ in
         })
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        handleSearch()
+        return true;
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,4 +145,3 @@ class SearchController : UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
 }
-

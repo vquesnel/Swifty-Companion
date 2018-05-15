@@ -14,21 +14,28 @@ class ProfilController : UICollectionViewController, UICollectionViewDelegateFlo
     let userCellId = "userCellId"
     let projectCellId = "projectCellId"
     let skillCellId = "skillCellId"
+    
     let titles : [String] = ["Profil", "Projects", "Skills"]
     
     var target : String?
     var user : User?
     
-    var cursus: Int?
-    
     var scrollX : CGFloat = {
         return  0
+    }()
+    
+    var menuHeight : CGFloat = {
+        return 40
+    }()
+    
+    var currentIndex : Int = {
+        return 0
     }()
     
     lazy var menuBar : Menu = {
         var menu = Menu()
         menu.translatesAutoresizingMaskIntoConstraints = false
-        menu.layer.cornerRadius = 16
+        menu.layer.cornerRadius = 5
         menu.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         menu.clipsToBounds = true
         menu.profilController = self
@@ -47,36 +54,33 @@ class ProfilController : UICollectionViewController, UICollectionViewDelegateFlo
         navigationTitle.text = "Profil"
         navigationTitle.font = UIFont.systemFont(ofSize: 20.0)
         
-        
         navigationController?.navigationBar.barTintColor =  UIColor.rgb(red: 29, green: 186, blue: 187)
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.white
+            NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue) : UIColor.white
         ]
         navigationItem.titleView = navigationTitle
         
         collectionView?.register(UserView.self, forCellWithReuseIdentifier: userCellId)
         collectionView?.register(ProjectsView.self, forCellWithReuseIdentifier: projectCellId)
         collectionView?.register(SkillsView.self, forCellWithReuseIdentifier: skillCellId)
-        collectionView?.contentInset = UIEdgeInsets(top: 80, left: 0, bottom: 0, right: 0)
+        collectionView?.contentInset = UIEdgeInsets(top: menuHeight, left: 0, bottom: 0, right: 0)
         collectionView?.showsHorizontalScrollIndicator = false
-        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 80, left: 0, bottom: 0, right: 0)
+        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: menuHeight, left: 0, bottom: 0, right: 0)
         collectionView?.isPagingEnabled = true
         
         view.addSubview(menuBar)
         menuBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         menuBar.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        menuBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    
-        
+        menuBar.heightAnchor.constraint(equalToConstant: menuHeight).isActive = true
     }
     
     func scrollToMenuIndex(index: Int) {
         let indexPath = IndexPath(item: index, section: 0)
         collectionView?.scrollToItem(at: indexPath, at: [], animated: true)
-        
+        currentIndex = index
         setTitleForMenuIndex(index: index)
     }
     
@@ -97,11 +101,11 @@ class ProfilController : UICollectionViewController, UICollectionViewDelegateFlo
 
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let index = targetContentOffset.move().x / view.frame.width
+        let index = targetContentOffset.pointee.x / view.frame.width
         let indexPath = IndexPath(item: Int(index), section: 0)
         
         menuBar.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
-        
+        currentIndex = Int(index)
         setTitleForMenuIndex(index: Int(index))
     }
     
@@ -109,11 +113,6 @@ class ProfilController : UICollectionViewController, UICollectionViewDelegateFlo
         switch indexPath.item {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: userCellId, for: indexPath) as! UserView
-            let view = UIImageView()
-            view.image = UIImage(named: "default")
-            view.clipsToBounds = true
-            view.contentMode = .scaleAspectFill
-            cell.backgroundView = view
             cell.user = user
             return cell
         case 1 :
@@ -129,7 +128,7 @@ class ProfilController : UICollectionViewController, UICollectionViewDelegateFlo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.height)
+        return CGSize(width: view.frame.width, height: view.frame.height - menuHeight)
     }
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -140,15 +139,9 @@ class ProfilController : UICollectionViewController, UICollectionViewDelegateFlo
             self.menuBar.collectionView.collectionViewLayout.invalidateLayout()
             self.menuBar.horizontalBarLeftAnchor?.constant = self.view.frame.width * x
             self.menuBar.collectionView.collectionViewLayout.invalidateLayout()
+            self.scrollToMenuIndex(index: self.currentIndex)
             }, completion: { _ in
                 self.scrollX = x * self.view.frame.width
         })
     }
 }
-
-
-
-
-
-
-

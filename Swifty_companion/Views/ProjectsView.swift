@@ -23,10 +23,10 @@ class ProjectsView: UICollectionViewCell, UITableViewDataSource, UITableViewDele
         view.allowsSelection = false
         view.delegate = self
         view.dataSource = self
+        view.separatorColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,7 +40,6 @@ class ProjectsView: UICollectionViewCell, UITableViewDataSource, UITableViewDele
         tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
         tableView.backgroundColor = UIColor.rgb(red: 30, green: 30, blue: 30)
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -53,11 +52,9 @@ class ProjectsView: UICollectionViewCell, UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ProjectCell
-//        cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, UIScreen.main.bounds.width)
         cell.backgroundColor = indexPath.item % 2 == 1 ? .none : UIColor(white: 0, alpha: 0.2)
         
         guard let data = projects else { return cell }
-        
         guard let grade = data[indexPath.item].finalMark else { return cell }
         guard let validated = data[indexPath.item].validated else { return cell }
         let name = data[indexPath.item].infos.name

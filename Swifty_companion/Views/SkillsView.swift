@@ -20,13 +20,12 @@ class SkillsView: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
     lazy var tableView : UITableView = {
         let view = UITableView(frame: frame)
         view.allowsSelection = false
-        view.separatorColor = .none
+        view.separatorColor = .clear
         view.delegate = self
         view.dataSource = self
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,7 +38,6 @@ class SkillsView: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
         tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
         tableView.backgroundColor = UIColor.rgb(red: 30, green: 30, blue: 30)
- 
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -52,7 +50,6 @@ class SkillsView: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: cellId,for: indexPath) as! SkillCell
-//        cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, UIScreen.main.bounds.width)
         
         cell.backgroundColor = indexPath.item % 2 == 1 ? .none : UIColor(white: 0, alpha: 0.12)
         

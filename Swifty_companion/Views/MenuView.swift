@@ -14,7 +14,7 @@ class Menu: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIColl
     let menuCellID = "menuBarButton"
     let menuBarLogoNames = ["account", "project", "skill"]
     
-    
+    var horizontalBarLeftAnchor : NSLayoutConstraint?
     var profilController : ProfilController?
     
     lazy var collectionView : UICollectionView = {
@@ -27,8 +27,6 @@ class Menu: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIColl
         view.delegate = self
         return view
     }()
-    
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,14 +47,10 @@ class Menu: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIColl
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    var horizontalBarLeftAnchor : NSLayoutConstraint?
-    
     func setHorizontalBar() {
         let horizontalBar = UIView()
         horizontalBar.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4)
         horizontalBar.translatesAutoresizingMaskIntoConstraints = false
-        
         
         addSubview(horizontalBar)
         
@@ -65,7 +59,6 @@ class Menu: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIColl
         horizontalBar.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         horizontalBar.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/3).isActive = true
         horizontalBar.heightAnchor.constraint(equalToConstant: 4).isActive = true
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
