@@ -17,6 +17,8 @@ class UserCell: UITableViewCell {
             campusLocation.text = "N/A"
             wallet.text = "N/A"
             correctionPoint.text = "N/A"
+            post.text = "-"
+            location.text = "Unavailable"
         }
         didSet {
             downloadImage()
