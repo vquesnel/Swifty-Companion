@@ -84,6 +84,7 @@ class SearchController : UIViewController, UITextFieldDelegate {
                 self.profilController.user = data
                 self.navigationController?.pushViewController(self.profilController, animated: true)
                 self.profilController.scrollToMenuIndex(index: 0)
+                self.profilController.menuBar.collectionView.collectionViewLayout.invalidateLayout()
                 self.profilController.menuBar.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: [])
                 self.searchButton.isEnabled = true;
                 self.profilController.collectionView?.reloadData()

@@ -87,7 +87,7 @@ class Menu: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIColl
     func setConstraint() {
         
         collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
-        collectionView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        collectionView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor).isActive = true
         collectionView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         
     }
